@@ -1,0 +1,9 @@
+<project name="antivy" basedir=".">
+  <dirname property="antivy.basedir" file="${ant.file.antivy}"/>
+  <property file="${antivy.basedir}/ant-ivy.properties"/>
+  <path id="ivy.lib.path">
+    <fileset dir="${ivy.home.dir}" includes="ivy-*.jar,lib/*.jar"/>
+  </path>
+  <taskdef resource="org/apache/ivy/ant/antlib.xml"
+      uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+</project>

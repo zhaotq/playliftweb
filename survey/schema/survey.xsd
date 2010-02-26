@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://gcpensions.tpsgc-pwgsc.gc.ca/survey" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gcpensions.tpsgc-pwgsc.gc.ca/survey">
+
+    <complexType name="survey">
+    	<sequence>
+    		<element name="title" type="string" minOccurs="1"></element>
+    		<element name="note" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="author" type="string" minOccurs="0"></element>
+    		<element name="startDate" type="string" minOccurs="1"></element>
+    		<element name="endDate" type="string" minOccurs="1"></element>
+    		<element name="targetGroup" type="string" minOccurs="1"
+    			maxOccurs="unbounded">
+    		</element>
+    		<element name="question" type="tns:question" minOccurs="1"
+    			maxOccurs="unbounded">
+    		</element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="version" type="string" use="required"></attribute>
+    	<attribute name="lang" type="tns:langType">
+    	</attribute>
+    </complexType>
+
+    <element name="survey" type="tns:survey"></element>
+
+    <complexType name="question">
+    	<sequence>
+    		<element name="image" type="tns:ImageType" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="description" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+
+    		<element name="constraint" type="tns:ConstraintType" maxOccurs="1" minOccurs="0"></element>
+    		<element name="expectedAnswer" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="score" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    		<element name="option" type="tns:option" minOccurs="0"
+    			maxOccurs="unbounded">
+    		</element>
+    	</sequence>
+    	<attribute name="name" type="string" use="optional"></attribute>
+    	<attribute name="type" type="tns:QuestionType"></attribute>
+    </complexType>
+
+
+    <complexType name="option">
+    	<simpleContent>
+    		<extension base="string">
+    			<attribute name="goto" type="string" use="optional"></attribute>
+    			<attribute name="type" type="tns:OptionType">
+    			</attribute>
+    			<attribute name="name" type="string" use="optional"></attribute>
+
+    			<attribute name="note" type="string"></attribute>
+    		</extension>
+    	</simpleContent>
+    </complexType>
+    <simpleType name="QuestionType">
+    	<restriction base="string">
+    		<enumeration value="single-choice"></enumeration>
+    		<enumeration value="multiple-choice"></enumeration>
+    		<enumeration value="YesNo"></enumeration>
+    		<enumeration value="TrueFalse"></enumeration>
+    		<enumeration value="scale"></enumeration>
+    		<enumeration value="date"></enumeration>
+    		<enumeration value="number"></enumeration>
+    		<enumeration value="string"></enumeration>
+    		<enumeration value="dropdown"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+    <simpleType name="OptionType">
+    	<restriction base="string">
+    		<enumeration value="default"></enumeration>
+    		<enumeration value="field"></enumeration>
+    		<enumeration value="text"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="ConstraintType">
+    	<sequence>
+    		<element name="min" type="string"></element>
+    		<element name="max" type="string"></element>
+    	</sequence>
+    </complexType>
+    <simpleType name="langType">
+    	<restriction base="string">
+    		<enumeration value="eng"></enumeration>
+    		<enumeration value="fra"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+    <complexType name="ImageType">
+    	<attribute name="note" type="string"></attribute>
+    	<attribute name="url" type="anyURI"></attribute>
+    </complexType>
+</schema>

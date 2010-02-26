@@ -1,0 +1,22 @@
+<lift:surround with="default" at="content">
+<p>
+Hello world!
+</p>
+<lift:main.list form="POST">
+<p>
+Testing p tag inside form.
+</p>
+<div>
+Testing div tag inside form.
+</div>
+<p>
+<act:new/>
+<label for="comments">Comments</label><br />
+<act:comment/>
+<act:new/>
+</p>
+</lift:main.list>
+<p>
+Testing p tag outside form.
+</p>
+</lift:surround>

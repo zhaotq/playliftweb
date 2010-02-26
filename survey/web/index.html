@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
+<head>
+<title>Cliff's Test</title>
+</head>
+<body>
+<p>
+Hello world!
+</p>
+<lift:main.list form="POST">
+<p>
+Testing p tag inside form.
+</p>
+<div>
+Testing div tag inside form.
+</div>
+<p>
+<act:new/>
+<label for="comments">Comments</label><br />
+<act:comment/>
+<act:new/>
+</p>
+</lift:main.list>
+<p>
+Testing p tag outside form.
+</p>
+</body>
+</html>

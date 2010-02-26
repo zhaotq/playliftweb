@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="survey" default="resolve">
+
+	<import file="../library/ant/ant-ivy.xml"/>
+	
+    <target name="resolve">
+        <ivy:configure file="ivysettings.xml" />
+        <ivy:resolve file="ivy.xml" conf="compile" />
+    </target>
+	
+    <target name="retrieve-compile" depends="resolve">
+        <ivy:retrieve pattern="lib/compile/[artifact]-[revision].[ext]" conf="compile" />
+    </target>
+	
+    <target name="retrieve-app-runtime" depends="resolve">
+        <ivy:retrieve pattern="lib/app-runtime/[artifact]-[revision].[ext]" conf="app-runtime" />
+    </target>
+	
+    <target name="retrieve-server-runtime" depends="resolve">
+        <ivy:retrieve pattern="lib/server-runtime/[artifact]-[revision].[ext]" conf="server-runtime" />
+    </target>
+
+	<target name="run-testform" depends="resolve">
+		<java classname="gcpens.forms.TestForm" fork="true">
+			<arg value="test\testform.xdp"/>
+			<arg value="test\testform.xml"/>
+			<classpath>
+				<dirset dir=".">
+					<include name="classes"/>
+				</dirset>
+				<fileset dir="lib/app-runtime" includes="*.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="build-ear" depends="retrieve-server-runtime">
+		<jar jarfile="deploy/survey.war">
+			<fileset dir="web">
+				<exclude name="**/*backup*"/>
+			</fileset>
+			<zipfileset dir="classes" prefix="WEB-INF/classes">
+				<exclude name="**/*TestCase.class"/>
+			</zipfileset>
+			<zipfileset dir="lib/server-runtime" prefix="WEB-INF/lib">
+			</zipfileset>
+		</jar>
+	</target>
+	
+	<!--    
+    <target name="retrieve-all" depends="resolve">
+        <ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="*" />
+    </target>
+
+    <target name="deliver" depends="retrieve-all">
+        <ivy:deliver deliverpattern="distrib/[artifact]-[revision].[ext]"
+                     pubrevision="1.1b4" pubdate="20050115123254" status="milestone" />
+    </target>
+
+    <target name="publish" depends="deliver">
+        <ivy:publish resolver="internal" 
+                     artifactspattern="distrib/[artifact]-[revision].[ext]" 
+                     pubrevision="1.1b4" />
+    </target>
+-->    
+</project>

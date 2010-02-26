@@ -1,0 +1,19 @@
+<ivy-module version="2.0">
+    <info organisation="gcpension" module="portal-form"/>
+    <configurations>
+        <!-- source code compile for production -->
+        <conf name="compile"/>
+        <!-- source code compile for testing -->
+        <conf name="test-compile" extends="compile"/>
+        <!-- runtime for running inside application server -->
+        <conf name="server-runtime"/>
+        <!-- runtime for running outside application server -->
+        <conf name="app-runtime" extends="server-runtime,compile" />
+        <!-- runtime for running unit tests -->
+        <conf name="unittest" extends="app-runtime,test-compile" />
+    </configurations> 
+    <dependencies>
+        <dependency org="javax.servlet" name="servlet-api" rev="2.4" conf="compile"/>
+        <dependency org="org.springframework" name="spring-web" rev="2.5.6" conf="compile"/>
+    </dependencies>
+</ivy-module>

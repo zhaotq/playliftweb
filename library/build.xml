@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="library" default="install">
+
+	<import file="ant/ant-ivy.xml"/>
+	
+    <target name="install">
+    	<ivy:install organisation="javax.servlet" module="servlet-api" revision="2.5" from="ibiblio" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="org.slf4j" module="slf4j-api" revision="1.5.8" from="ibiblio" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="com.thoughtworks.paranamer" module="paranamer" revision="2.0" from="ibiblio" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="org.scala-lang" module="scala-library" revision="2.8.0.Beta1" from="scala" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="org.igniterealtime.smack" module="smack" revision="3.1.0" from="reucon" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="org.igniterealtime.smack" module="smackx" revision="3.1.0" from="reucon" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="net.liftweb" module="lift-core" revision="1.0.2" from="ibiblio" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    	<ivy:install organisation="net.liftweb" module="lift-core" revision="2.0-scala280-SNAPSHOT" from="scala-snapshots" to="repo" transitive="true" haltonfailure="false" overwrite="true"/>
+    </target>
+	
+</project>

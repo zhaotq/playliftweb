@@ -1,0 +1,20 @@
+<ivy-module version="2.0">
+    <info organisation="gcpension" module="survey"/>
+    <configurations>
+        <!-- source code compile for production -->
+        <conf name="compile"/>
+        <!-- source code compile for testing -->
+        <conf name="test-compile" extends="compile"/>
+        <!-- runtime for running inside application server -->
+        <conf name="server-runtime"/>
+        <!-- runtime for running outside application server -->
+        <conf name="app-runtime" extends="server-runtime,compile" />
+        <!-- runtime for running unit tests -->
+        <conf name="unittest" extends="app-runtime,test-compile" />
+    </configurations> 
+    <dependencies>
+        <dependency org="javax.servlet" name="servlet-api" rev="2.5" conf="compile->master"/>
+        <dependency org="org.scala-lang" name="scala-library" rev="2.8.0.Beta1" conf="*->master(*),compile(*)"/>
+        <dependency org="net.liftweb" name="lift-webkit" rev="2.0-scala280-SNAPSHOT" conf="compile->master(*),compile(*);server-runtime->master(*),runtime(*)"/>
+    </dependencies>
+</ivy-module>

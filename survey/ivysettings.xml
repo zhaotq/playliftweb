@@ -1,0 +1,17 @@
+<ivysettings>
+	<settings defaultResolver="repo"
+            defaultConflictManager="latest-revision" />		<!-- in order to get all revisions without any eviction -->
+
+    <properties file="../library/build.properties" />
+    
+    <caches default="portalcache">
+        <cache name="portalcache" basedir="${ivy.cache.dir}"></cache>
+    </caches>
+
+	<resolvers>
+	    <filesystem name="repo">
+	        <ivy pattern="${dest.repo.dir}/[organisation]/[module]/ivys/ivy-[revision].xml"/>
+	        <artifact pattern="${dest.repo.dir}/[organisation]/[module]/[type]s/[artifact]-[revision].[ext]"/>
+	    </filesystem>
+	</resolvers>
+</ivysettings>
