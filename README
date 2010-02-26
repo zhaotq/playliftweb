@@ -1,0 +1,21 @@
+The project requires the following tools:
+Eclipse Galileo with Ivy 2.1 plugin, scala plugin (2.8.0 Beta1)
+
+The repository contains two projects: library and survey.
+
+library is to build a local repository of Ivy for any project in this eclipse workspace.
+
+survey is a project of building a survey tool. Here just for evaluating Lift Framework.
+
+Build process:
+1. Run install target of the library project. It will build the Ivy repository locally for the workspace.
+2. Run build-ear of the survey project to create the survey.war in the deploy directory.
+3. Deploy the survey.war file in Tomcat 6.0.24.
+
+URL:
+http://localhost:8080/survey/index.html
+This URL produces the namespace problem, when not using the lift:surround tag.
+
+http://localhost:8080/survey/tmp.html
+This URL does not have the namespace problem, since it uses the lift:surround tag.
+
